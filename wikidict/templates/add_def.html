@@ -1,0 +1,51 @@
+{% extends "detail.html" %}
+{% load static %}
+
+{% block title %}给{{ term.term }}添加一个释义&nbsp;&nbsp;-俚语维基{% endblock %}
+{% block description %}给{{ term.term }}添加释义的页面。{% endblock %}
+{% block js %}
+    <script src="{% static 'js/jquery-1.11.1.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+{% endblock %}
+
+{% block colcenter %}
+<h2>{{ term.term }}</h2>
+<form action="/{{ term.uid }}_add_def.html" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <p>给【&nbsp;<a href="/{{ term.uid }}.html">{{ term.term }}</a>&nbsp;】添加一个释义 :
+        <span id="id_definition_tips" style="display: none">已有<span id="id_definition_counter2"></span>字，最少提交15字。可输入<span id="id_definition_counter"></span>个字符。</span><br/>
+            {{ form.definition }}{{ form.definition.help_text }}{{ form.definition.errors }}</p>
+        <br />
+    <p>请填写正确的计算结果 : <br/>
+        {{ form.captcha }}{{ form.captcha.errors }}</p>
+        <br />
+        <hr style="color: whitesmoke;width: 45%;text-align: left" />
+    <br />
+    <div id="no-need">以下是选填信息（不写也没问题）：</div><br />
+        <p>上传1个参考图片（大小<3MB，宽度<1000px，高度<3000px）：<br />
+        {{ form.docfile }}
+        {{ form.docfile.errors }}
+        <br /><br />
+        你的名字 :<span id="id_author_tips" style="display: none">可输入<span id="id_author_counter"></span>个字符</span><br/>
+        {{ form.author }}{{ form.author.help_text }}{{ form.author.errors }}<br/><br/>
+        你的博客或者参考网站 :
+        <span id="id_homepage_tips" style="display: none">可输入<span id="id_homepage_counter"></span>个字符，你留下的网址将永久性出现在词条旁边，对其他网友有所帮助</span><br/>
+        {{ form.homepage }}{{ form.homepage.help_text }}{{ form.homepage.errors }}<br/><br/>
+        你的电子邮件 :
+        <span id="id_author_email_tips" style="display: none">可输入<span id="id_author_email_counter"></span>个字符，你将收到系统发来的通知邮件</span><br/>
+        {{ form.author_email }}{{ form.author_email.errors }}</p>
+    <br />
+    <input type="submit" value="提交">
+</form>
+{% endblock %}
+
+
+
+{% block colleft %}
+    &nbsp;
+{% endblock %}
+
+{% block colright %}
+    &nbsp;
+{% endblock %}
+

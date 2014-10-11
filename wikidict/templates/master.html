@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <link href="{% static 'css/backend.css' %}" rel="stylesheet" type="text/css" />
+    <title>Main master backend</title>
+</head>
+<body>
+<div class="header"><a href="/">Go back to front</a></div>
+
+
+{% for d in deflist %}
+{% if not d.show %}<div class="not_pass">{% endif %}
+
+<p><a class="term" target="_blank" href="/{{ d.Terms.uid }}.html">{{ d.Terms.term }}</a><br />
+    <a class="del_term" href="/master_del_t/{{ d.Terms.uid }}/" onclick="return confirm('这个词条及其下释义全部删除?');">删除这个条目</a>
+</p>
+
+<div class="clearer"></div>
+<p>{{ d.definition }}<br />
+{% if d.docfile %}
+        <a href="{{ d.docfile.url }}" target="_blank"><img class="docfile" src="{{ d.docfile.url }}" /></a>
+{% endif %}
+</p><br />
+<div class="user_info">
+{{ d.author|default:"匿名" }},&nbsp; {{ d.created_time|date:"Y-m-d,H:i:s" }}&nbsp;<a href="mailto:{{ d.author_email }}"  >{{ d.author_email }}</a>&nbsp;<a href="{{ d.homepage }}" >{{ d.homepage }}</a><br />
+</div>
+<br />
+
+<div class="operation">
+    {% if not d.show %}
+    {% if d.author_email %}<a href="/master_pass_d_sent/{{ d.uid }}/">通过&发信</a>&nbsp;{% endif %}
+    <a href="/master_pass_d/{{ d.uid }}/">通过</a>&nbsp;{% endif %}
+    {% if d.show %}
+        (已通过)&nbsp;
+    {% endif %}
+    {% if d.author_email %}
+    <a href="/master_del_d_send/{{ d.uid }}/">否决删除&发信&nbsp;</a>
+    {% endif %}
+    &nbsp;<a href="/master_del_d/{{ d.uid }}/">删除</a>
+</div>
+
+{% if not d.show %}</div> {% endif %}
+
+    <hr />
+
+
+{% endfor %}
+
+</body>
+</html>

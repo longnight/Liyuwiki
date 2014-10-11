@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="description" content="{% block description %}“俚语维基”专事记录互联网上新兴的俚语、俗语、新词汇。
+    不需要注册、登录，即可创建条目和释义。留下你对某些概念的看法！与维基百科等网站不同，在这里你创建的内容，不会被他人修改或覆盖。{% endblock %}" />
+<meta name="keywords" content="{% block keyword %}俚语,维基,网络流行语,投票,词条,百科,山寨urbandictionary,Newspeak{% endblock %}" />
+<meta name="robots" content="{% block robots %}index, follow{% endblock %}" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" />
+<title>俚语维基 ,人人都可以匿名发表的流行语词典,收录新生语文现象,记载这个时代的鸿爪雪泥</title>
+</head>
+<body class="home">
+<div class="hp_wrap">
+
+<div class="homelogo">
+<div class="logo"><img src="{% static 'images/liyuwiki-logo.png' %}" alt="LOGO"/></div><br />
+<div class="slogan">俚&nbsp;语&nbsp;维&nbsp;基,&nbsp;在这里写下你对世界的定义</div>
+</div>
+
+<div class="homepage">
+	<form method="get" action="/search" class="form-wrapper cf">
+      {{ sform.q }}
+      <button type="submit"> 搜 索 </button>
+    </form> 
+</div>
+
+<div class="homepage2">或</div>
+
+<div class="homepage3">
+    <a href="/random/" class="button1 green">随&nbsp;便&nbsp;看&nbsp;看</a>
+    <a href="/add_term.html" class="button1 blue">匿名创建词条</a>
+    <br /><br />
+    到目前为止已有{{ author_count }}位网友创建了{{ terms_count }}个俚语词条，{{ defs_count }}个释义（{{ anonymous_count }}人匿名）
+</div>
+
+<div class="homepage4">
+<div class="latest_voted">
+最近被投票的词条:<br />
+{% for i in latest_voted %}
+<span class="lvterm"><a title="{{ i.modified_time|date:'Y-m-d,H:i:s' }}被投票" href="/{{ i.uid }}.html">{{ i.term }}</a></span>
+{% endfor %}
+</div>
+
+<div class="latest_created">
+最新创建的词条:<br />
+{% for i in latest_created %}
+    <span class="lcterm"><a title="{{ i.created_time|date:'Y-m-d,H:i:s' }}" href="/{{ i.uid }}.html">{{ i.term }}</a></span>
+{% endfor %}
+</div>
+
+</div>
+
+<div class="preword">
+    “俚语维基”专事记录互联网上新兴的俚语、俗语、新词汇。
+    不需要注册、登录，即可创建条目和释义。留下你对某些概念的看法！与维基百科等网站不同，在这里你创建的内容，不会被他人修改或覆盖。<br />
+
+
+</div>
+
+
+
+</div>
+
+<div class="bullshit"><a href="/about.html">关于</a>·
+    <a href="/support.html">技术支持</a>·
+    <a href="/ugc_guide.html">投稿指南</a>·
+    <a target="_blank" href="http://www.miibeian.gov.cn/">桂ICP备1004809号-9</a></div>
+{% if is_online %}
+<div style="visibility:hidden"><script src="http://js.users.51.la/17101801.js"></script>
+<noscript><a href="http://www.51.la/?17101801" target="_blank"><img src="http://img.users.51.la/17101801.asp" style="border:none" /></a></noscript></div>
+{% endif %}
+</body>
+</html>
+
+
+
+
+
+

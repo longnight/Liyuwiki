@@ -1,0 +1,67 @@
+{% extends "detail.html" %}
+{% load static %}
+{% load random_img %}
+{% block title %}{{ query }}的搜索结果 -俚语维基{% endblock %}
+
+
+{% block searchform %}{{ form.q }}{% endblock %}
+
+
+{% block colcenter %}
+
+        {% if query %}
+            <h2>搜索结果</h2>
+            {% for result in page.object_list %}
+                <div class="result">
+                <h3><a href="/{{ result.object.Terms.uid }}.html">{{ result.object.Terms.term }}</a></h3>
+                {% if result.object.show %}
+                    <p>{{ result.object.definition }}</p><br />
+                <div class="result-jump">
+                    <a target="_blank" href="/{{ result.object.Terms.uid }}/{{ result.object.uid }}.html">
+                 >>></a>
+                </div>
+                {% else %}
+                    <p class="def-block unshow">该条目的释义尚未通过，你可以提交新的释义</p>
+                {% endif %}
+                </div>
+            {% empty %}
+                <div class="single">
+                <p>不好意思，没有找到符合条件“{{ query }}”的结果。</p>
+                <p>请创建这个词条，分享你的知识！</p>
+                <p><a href="/add_search_term/{{ query }}/">创建:{{ query }}</a></p>
+                <div class="random_img">
+                <a title="random pics" href="/add_search_term/{{ query }}/">
+                    <img alt="随机图片" src='{% random_img "search_not_found/" %}' />
+                </a>
+                <span id="random_slogan">随机小图片，每天好心情 : )</span>
+                </div>
+                </div>
+            {% endfor %}
+
+            {% if page.has_previous or page.has_next %}
+                <div>
+                    {% if page.has_previous %}<a href="?q={{ query }}&amp;page={{ page.previous_page_number }}">{% endif %}&laquo; Previous{% if page.has_previous %}</a>{% endif %}
+                    |
+                    {% if page.has_next %}<a href="?q={{ query }}&amp;page={{ page.next_page_number }}">{% endif %}Next &raquo;{% if page.has_next %}</a>{% endif %}
+                </div>
+            {% endif %}
+        {% else %}
+            {# Show some example queries to run, maybe query syntax, something else? #}
+            <h3>请输入搜索关键词！</h3>
+            <br />
+            <br />
+            <p>
+            <img src="/media/easter_egg.jpg" />
+            </p>
+        {% endif %}
+    </form>
+
+{% endblock %}
+
+{% block colleft %}
+    &nbsp;
+{% endblock %}
+
+{% block colright %}
+    &nbsp;
+{% endblock %}

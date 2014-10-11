@@ -1,0 +1,63 @@
+{% extends "detail.html" %}
+{% load static %}
+<!DOCTYPE html>
+{% block description %}{{ term.term }}:{{ definition.definition|linebreaks|removetags:"p br" }}{% endblock %}
+{% block title %}{{ term.term }}的单个释义页面&nbsp;&nbsp;-俚语维基,人人都可以匿名发表的流行语词典{% endblock %}
+{% block js %}
+    <script src="{% static 'js/liyuwiki.js' %}"></script>
+{% endblock %}
+
+{% block colcenter %}
+<h1>{{ term.term }}</h1>
+<p class="def-block">
+    {{ definition.definition|linebreaks }}<br />
+    {% if definition.docfile %}
+    <a title="查看原始图片: {{ term.term }}，{{ definition.created_time|date:"Y-m-d" }}" href="{{ definition.docfile.url }}" ><img alt="{{ term.term }}" class="docfile" src="{{ definition.docfile.url }}" /></a>
+    <br />
+    <a class="img_tips" href="{{ definition.docfile.url }}" target="_blank">点此在新窗口查看原始图片</a>
+    {% endif %}
+
+</p>
+<p class="date-author">
+<span class="author">
+    {% if definition.homepage %}
+    <a target="_blank" href="{{ definition.homepage }}" >{{ definition.author|default:"佚名"}}</a>
+    {% else %}
+    {{ definition.author|default:"佚名"}}
+    {% endif %}创建<br />
+</span>
+<span class="date">{{ definition.created_time|date:"Y-m-d,H:i:s" }}</span>
+</p>
+<p class="score">
+得分:{{ definition.vote_rank2 }}
+</p>
+<p class="vote">
+<a class="up" href="/{{ term.uid }}/{{ definition.uid }}.html?vote=add"><button>赞成</button></a><span class="up_num">({{ definition.total_upvotes }})</span>
+<a class="down" href="/{{ term.uid }}/{{ definition.uid }}.html?vote=sub"><button>反对</button></a><span class="down_num">({{ definition.total_downvotes }})</span>
+<a class="the-link" href="/{{ term.uid }}.html">查看所有释义</a>
+</p>
+
+<div class="add-def">
+    <span id="add-def">对以上内容不满意?你可以</span>
+    <a class="button2 blue" href="/{{ term.uid }}_add_def.html">添加一个释义</a>
+</div>
+
+{% endblock %}
+
+{% block colleft %}
+<ul id="termlist">
+<li><a href="/{{ term.uid }}.html">< {{ term.term }}</a></li>
+</ul>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+

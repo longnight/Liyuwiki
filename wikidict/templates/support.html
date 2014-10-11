@@ -1,0 +1,67 @@
+{% extends "detail.html" %}
+{% load static %}
+{% block title %}本站使用的技术{% endblock %}
+{% block description %}本站使用的技术方案说明。方便有需要的朋友了解{% endblock %}
+{% block keyword %}about{% endblock %}
+{% block searchform %}<input type="text" placeholder="..." name="q" id="id_q">{% endblock %}
+
+
+
+
+{% block colcenter %}
+<div class="single">
+    <h3>本站使用的一些技术</h3>
+
+
+<p>后台脚本程序用<a href="https://www.python.org/">Python</a>下的<a href="https://www.djangoproject.com/">Django</a>框架写成。Django是著名的开源web框架，它诞生的目标就是为新闻和媒体行业服务，并且有着非常详尽的文档，很适合新手。</p>
+
+<p>由于Django未自带搜索工具，所以搜索方面用了<a href="http://bitbucket.org/mchaput/whoosh/">Whoosh </a>+ <a href="http://haystacksearch.org/">Haystack</a> + <a href="https://github.com/fxsjy/jieba">结巴中文分词</a> 这个组合，
+  实践证明，速度还是很快的！ </p>
+<p>因此，搜索时使用适切的词组，可能会得到比单字更好的结果。除非它不存在于结巴的词库中。</p>
+
+<p>采用了<a href="https://github.com/lxneng/xpinyin">Xpinyin </a>这个包来让汉字词汇转化到拼音。本站左侧词汇表依此实现了字母排序。感谢开源的同胞们！ </p>
+
+<p>后台使用<a href="http://www.celeryproject.org/">Celery</a> + <a href="http://www.rabbitmq.com/">RabbitMQ</a> 实现了异步发送邮件、异步更新索引。这样一来，request不用再等待发送邮件的响应，
+  用户提交内容速度从几十秒提升到毫秒级别，并且不耽误网站管理员（也就是我）立即收到邮件通知。搜索引擎缓存也得到即时更新。 </p>
+
+<p>如果创建内容时留下了邮箱，匿名用户也会收到是否采用的通知。通知邮件使用了QQ企业邮箱服务——
+    没办法，Gmail发送失败率太高，他们被墙得很厉害...不过，我们总能等到所有东西都畅通的那一天的。
+</p>
+
+<p>还有：<a href="https://pypi.python.org/pypi/virtualenv">Virtualenv</a> 、<a href="http://south.aeracode.org/">South</a> 这些常规必备的好东西，个别小app，不一一罗列出来了。 </p>
+
+<p>
+    服务器：<a href="http://nginx.org/">nginx</a> + <a href="http://projects.unbit.it/uwsgi/">uWSGI</a><br />
+    所有的静态文件交给Nginx处理,<br />
+    而uWSGI 负责处理脚本活动。
+</p>
+<h3>排名算法</h3>
+    <p>1个词条下可能会有多个不同的释义，为排序选择一个科学的算法很重要，在这里我从
+        <a href="http://www.ruanyifeng.com/blog/2012/03/ranking_algorithm_wilson_score_interval.html">阮一峰先生的《基于用户投票的排名算法（五）》</a>
+        找到了解决方案：威尔逊区间算法，避免了单纯采用赞成反对数加减结果的弊病，在python下实现起来也很简单。有兴趣的朋友不妨在词条内投几次票看看。</p>
+{#<p>能纯熟使用Github之后，我会将本站的源码放上去。<a href="https://github.com/longnight">这是我的github</a>。 </p>#}
+<p>其他技术细节，可以访问<a href="http://maruta.be/1984">我的个人博客</a>，我会将一些零碎想法记录在那儿。</p>
+<h3>更新记录</h3>
+<p>
+    2014.09.04：启用缓存以减少“相关的词条”的重复计算，提高载入速度。<br />
+    2014.08.29：增加了“大家最近搜的内容”。<br />
+    2014.08.28：增加了“相关的词条”。<br />
+    2014.08.11：一些搜索爬虫不遵守robots.txt定义，导致投票分数可能被影响，经此修改后避免了此类流氓爬虫的干扰。<br />
+    2014.07.25：搜索页面放了点图片。<br />
+    2014.07.11：增加了上传图片功能。<br />
+    2014.06.13：上线。
+</p>
+</div>
+{% endblock %}
+
+
+
+
+
+{% block colleft %}
+    &nbsp;
+{% endblock %}
+
+{% block colright %}
+    &nbsp;
+{% endblock %}

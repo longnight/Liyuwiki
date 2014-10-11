@@ -1,0 +1,71 @@
+body {
+    width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: lightgray;
+}
+
+a {
+    text-decoration: none;
+}
+
+.header {
+    height: 80px;
+    font-size: 2em;
+    font-weight: bold;
+    color: #696969;
+}
+
+.not_pass {
+    background-color: cornsilk;
+}
+
+
+.term {
+    color: orangered;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+.del_term {
+    width: 120px;
+    float: right;
+    margin-right: 300px;
+    color: darkslategray;
+    background-color: palevioletred;
+}
+
+.docfile {
+    max-width: 400px;
+    margin-top: 10px;
+}
+.clearer {
+    clear: both;
+}
+
+.user_info {
+    font-size: 0.8em;
+}
+
+.user_info a {
+    text-decoration: underline;
+    color: deepskyblue;
+}
+
+.operation {
+    width: 100%;
+    line-height: 32px;
+}
+
+.operation a {
+    text-decoration: none;
+    color: firebrick;
+    font-size: 2em;
+}
+
+
+
+
+
+
+

@@ -1,0 +1,759 @@
+* {
+margin: 0;
+}
+
+html, body {
+    height: 100%;
+    /*font-family: Helvetica, Tahoma, Arial, STXihei,*/
+    /*"华文细黑", "Microsoft YaHei",*/
+    /*"微软雅黑", SimSun, "宋体", Heiti, "黑体", sans-serif;*/
+    font-family: arial, sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    border: 0; /* This removes the border around the viewport in old versions of IE */
+    width: 100%;
+    min-width: 600px; /* Minimum width of layout - remove line if not required */
+    /* The min-width property does not work in old versions of Internet Explorer */
+    font-size: 14px;
+    background-color: ghostwhite;
+    color:dimgray;
+}
+
+/*-------home page---------*/
+.hp_wrap {
+    color: antiquewhite;
+}
+
+.homelogo {
+    margin-top: 30px;
+}
+
+.logo {
+    /*font-size: 4em;
+    font-family: 'Patua One', cursive, arial, sans-serif;
+    color: ghostwhite;
+    display: inline-block;
+    text-shadow: 1px 1px dimgray;*/
+    text-decoration: none;
+}
+
+.slogan {
+    margin-top: 0.5em;
+    font-size: 12px;
+}
+
+.home {
+    background-color: #4ac9f4;
+    height: 80%;
+}
+
+.homelogo, .homepage2, .homepage3 {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.homepage3 {
+    margin-top: 20px;
+}
+
+.homepage3 .button1 {
+    margin-left: 20px;
+}
+
+
+.homepage4 {
+    max-width: 600px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 20px;
+    line-height: 2em;
+    font-size: 14px;
+    margin-bottom: 80px;
+
+}
+
+.latest_voted, .latest_created {
+    margin-top: 10px;
+    margin-left: 45px;
+}
+
+.lvterm a, .lcterm a {
+    text-decoration: none;
+    display: inline-block;
+    margin-left: 20px;
+    margin-top: 10px;
+    border: 0;
+    border-radius: 4px;
+    padding-left: 8px;
+    padding-right: 12px;
+    background: #48C9FF;
+    background: -webkit-linear-gradient(top, #48C9FF 0%, #2EA8E5 100%);
+    background: -moz-linear-gradient(top, #48C9FF 0%, #2EA8E5 100%);
+    background: -ms-linear-gradient(top, #48C9FF 0%, #2EA8E5 100%);
+    background: -o-linear-gradient(top, #48C9FF 0%, #2EA8E5 100%);
+    background: linear-gradient(to bottom, #48C9FF 0%, #2EA8E5 100%);
+    text-shadow: #29a3cc 0 1px 3px;
+    -webkit-box-shadow:
+        inset 0 1px 0 #38bdf4,
+        inset 0 2px 0 #7bdeff,
+        0 1px 2px #777,
+        0 0px 1px #ccc;
+    -moz-box-shadow:
+        inset 0 1px 0 #38bdf4,
+        inset 0 2px 0 #7bdeff,
+        0 1px 2px #777,
+        0 0px 1px #ccc;
+    box-shadow:
+        inset 0 1px 0 #38bdf4,
+        inset 0 2px 0 #7bdeff,
+        0 1px 2px #777,
+        0 0px 1px #ccc;
+    color: #217aa6;
+    text-shadow: #78d2f0 0 1px 0;
+}
+
+.lvterm a:hover, .lcterm a:hover {
+    color: #d4f7f2;
+
+}
+/*-------home page end---------*/
+
+.header {
+    width: 100%;
+    background-color: #4ac9f4;
+    height: 80px;
+    margin-bottom: 10px;
+    padding-top: 15px;
+}
+
+.header-main {
+    /*border: 1px solid indianred;*/
+    /*margin: auto;*/
+    max-width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+
+.content-wrap {
+    position: relative; /* This fixes the IE7 overflow hidden bug and stops the layout jumping out of place */
+    clear: both;
+    float: left;
+    width: 100%; /* width of whole page */
+    overflow: hidden; /* This chops off any overhanging divs */
+
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -220px;
+}
+
+
+.content {
+    float: left;
+    width: 200%;
+    margin-left: -200px; /* Width of right column */
+    position: relative;
+    right: 100%;
+}
+
+.main-wrap {
+    float: left;
+    width: 100%;
+    margin-left: -50%;
+    position: relative;
+    left: 400px; /* Left column width + right column width */
+}
+
+.main {
+    float: left;
+    width: 50%;
+    position: relative;
+    right: 200px; /* Width of left column */
+    padding-bottom: 1em; /* Centre column bottom padding. Leave it out if it's zero */
+}
+
+.colleft {
+    float: left;
+    float: right; /* This overrides the float:left above */
+    width: 170px; /* Width of left column content (left column width minus left and right padding) */
+    position: relative;
+    right: 5px; /* Width of the left-had side padding on the left column */
+    /*below is to limit word wide*/
+    /*width: 165px;*/
+/*    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;*/
+}
+
+.colright {
+    float: left;
+    float: right; /* This overrides the float:left above */
+    width: 170px; /* Width of right column content (right column width minus left and right padding) */
+    margin-right: 45px; /* Width of right column right-hand padding + left column left and right padding */
+    position: relative;
+    left: 50%;
+}
+
+.colcenter {
+    margin: 0 215px;
+    /* Centre column side padding:
+                       Left padding = left column width + centre column left padding width
+                       Right padding = right column width + centre column right padding width */
+    position: relative;
+    left: 200%;
+    overflow: hidden;
+    color:#464646;
+}
+
+.colcenter h1 {
+    font-size: 3em;
+    text-decoration: none;
+    color: #454545;
+    letter-spacing:2px;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+    margin-bottom: 45px;
+}
+
+.date, .author {
+    font-size: 12px;
+}
+.date-author{
+    text-align: right;
+
+}
+
+p.def-block {
+    font-size: 1.1em;
+    margin-top: 10px;
+    margin-bottom: 1em;
+    /*text-indent: 2em;*/
+    line-height: 1.5em;
+}
+
+p.unshow {
+    font-style: italic;
+}
+
+p.score {
+    text-align: right;
+    font-size: 0.7em;
+}
+p.vote {
+    text-align: right;
+}
+
+p.vote .up, p.vote .down  {
+    color: #696969;
+}
+
+.vote .up {
+    margin-right: 3em;
+}
+
+.vote .down {
+    margin-right: 5em;
+}
+.the-link {
+    text-decoration: none;
+    color: lightskyblue;
+    font-size: 0.5em;
+}
+.v_t p {
+    font-size: 12px;
+}
+
+.v_t a {
+    text-decoration: none;
+    color: #D3D3D3;
+    margin-top: 10px;
+    display: inline-block;
+}
+
+.v_t a:hover {
+    color: #2F4F4F;
+}
+
+hr.def-hr {
+    width: 95%;
+    margin-top: 5px;
+    color: lightgrey;
+}
+
+
+
+
+
+
+
+/*---------left column--------*/
+
+ ul#termlist
+ {
+ text-align: left;
+ list-style: none;
+ padding: 0;
+ margin: 0 auto;
+ width: 95%;
+
+ }
+
+ ul#termlist li
+ {
+ display: block;
+ margin: 0;
+ padding: 0;
+
+ }
+
+ ul#termlist li a
+ {
+ display: block;
+ width: 95%;
+ padding: 0.3em 0.2em 0.3em 1em;
+ border-width: 1px;
+ border-color: #ffe #aaab9c #ccc #fff;
+ border-style: solid;
+ color: #828282;
+ text-decoration: none;
+ background: #ebebff;
+ margin-right: 8px;
+       white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+ }
+
+ ul#termlist li a { width: auto; }
+
+ ul#termlist li#active a
+ {
+ background: #4ac9f4;
+ color: ghostwhite;
+ font-weight: bolder;
+ }
+
+ ul#termlist li a:hover, ul#termlist li#active a:hover
+ {
+ color: ghostwhite;
+ background: #4ac9f4;
+ border-color: #aaab9c #fff #fff #ccc;
+ }
+
+/*---------left column end--------*/
+
+.push {
+    height: 100px;
+    clear: both;
+}
+
+.clear {
+    clear: both;
+}
+
+/*--------header search input-----*/
+.positionlogo {
+    float: left;
+}
+
+.positionlogo .logo {
+    font-size: 3.5em;
+}
+
+.position1 {
+    float:left;
+    margin-top:-132px;
+    margin-left: 15px;
+}
+
+.position2 {
+    float:left;
+    margin-top: 3px;
+    margin-left:15px;
+}
+
+.button1 {
+    display: inline-block;
+    font: bold 16px Arial;
+    letter-spacing:;
+    text-decoration: none;
+    /*margin: 20px auto;*/
+    padding: 15px 20px;
+    width: 110px;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+
+    -moz-border-radius-topleft: 30px 50px;
+    -moz-border-radius-topright: 30px 50px;
+    -moz-border-radius-bottomright: 30px 50px;
+    -moz-border-radius-bottomleft: 30px 50px;
+    border-top-left-radius: 30px 50px;
+    border-bottom-left-radius: 30px 50px;
+    border-top-right-radius: 30px 50px;
+    border-bottom-right-radius: 30px 50px;
+
+}
+
+.button1:hover {
+        border-top-left-radius: 10px 50px;
+    border-bottom-left-radius: 10px 50px;
+    border-top-right-radius: 10px 50px;
+    border-bottom-right-radius: 10px 50px;
+    -moz-border-radius-topleft: 10px 50px;
+    -moz-border-radius-topright: 10px 50px;
+    -moz-border-radius-bottomright: 10px 50px;
+    -moz-border-radius-bottomleft: 10px 50px;
+
+}
+    
+.button1 span {
+    display: block;
+    margin: 2px 0 0;
+    font: oblique bold 11px verdana;}
+
+.button2 {
+    text-decoration: none;
+    font: bold 12px Arial;
+    display: inline-block;
+    /*margin: 20px auto;*/
+    margin-left: 0.8em;
+    margin-bottom: 1em;
+    /*padding: 6px 14px;*/
+    padding: 6px 4px 6px 8px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+    width: 100px;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;}
+
+.button2:hover {
+    -moz-border-radius: 5px;
+    border-radius: 5px;}
+
+
+.blue {
+    color: #fff;
+    background: #48C9FF;
+    background: -webkit-linear-gradient(top, #48C9FF 0%, #2EA8E5 100%);
+    background: -moz-linear-gradient(top, #48C9FF 0%, #2EA8E5 100%);
+    background: -ms-linear-gradient(top, #48C9FF 0%, #2EA8E5 100%);
+    background: -o-linear-gradient(top, #48C9FF 0%, #2EA8E5 100%);
+    background: linear-gradient(to bottom, #48C9FF 0%, #2EA8E5 100%);
+    text-shadow: #29a3cc 0 1px 3px;
+    -webkit-box-shadow:
+        inset 0 1px 0 #38bdf4,
+        inset 0 2px 0 #7bdeff,
+        0 1px 3px #777,
+        0 0px 1px #ccc;
+    -moz-box-shadow:
+        inset 0 1px 0 #38bdf4,
+        inset 0 2px 0 #7bdeff,
+        0 1px 3px #777,
+        0 0px 1px #ccc;
+    box-shadow:
+        inset 0 1px 0 #38bdf4,
+        inset 0 2px 0 #7bdeff,
+        0 1px 3px #777,
+        0 0px 1px #ccc;}
+
+.blue span {
+    color: #217aa6;
+    text-shadow: #78d2f0 0 1px 0;}​
+    
+.green {
+    color: #fff;
+    background: #48C9FF;
+    background: -webkit-linear-gradient(top, #48C9FF 0%, #2EA8E5 100%);
+    background: -moz-linear-gradient(top, #48C9FF 0%, #2EA8E5 100%);
+    background: -ms-linear-gradient(top, #48C9FF 0%, #2EA8E5 100%);
+    background: -o-linear-gradient(top, #48C9FF 0%, #2EA8E5 100%);
+    background: linear-gradient(to bottom, #48C9FF 0%, #2EA8E5 100%);
+    text-shadow: #29a3cc 0 1px 3px;
+    -webkit-box-shadow:
+        inset 0 1px 0 #38bdf4,
+        inset 0 2px 0 #7bdeff,
+        0 1px 3px #777,
+        0 0px 1px #ccc;
+    -moz-box-shadow:
+        inset 0 1px 0 #38bdf4,
+        inset 0 2px 0 #7bdeff,
+        0 1px 3px #777,
+        0 0px 1px #ccc;
+    box-shadow:
+        inset 0 1px 0 #38bdf4,
+        inset 0 2px 0 #7bdeff,
+        0 1px 3px #777,
+        0 0px 1px #ccc;}
+
+.green {
+    color: #fff;
+    background: #5ae31d;
+    background: -webkit-linear-gradient(top, #5ae31d 0%, #66cc33 100%);
+    background: -moz-linear-gradient(top, #5ae31d 0%, #66cc33 100%);
+    background: -ms-linear-gradient(top, #5ae31d 0%, #66cc33 100%);
+    background: -o-linear-gradient(top, #5ae31d 0%, #66cc33 100%);
+    background: linear-gradient(to bottom, #5ae31d 0%, #66cc33 100%);
+    text-shadow: #339900 0 1px 3px;
+    -webkit-box-shadow:
+        inset 0 1px 0 #99ff99,
+        inset 0 2px 0 #ccff99,
+        0 1px 3px #777,
+        0 0px 1px #ccc;
+    -moz-box-shadow:
+        inset 0 1px 0 #99ff99,
+        inset 0 2px 0 #ccff99,
+        0 1px 3px #777,
+        0 0px 1px #ccc;
+    box-shadow:
+        inset 0 1px 0 #99ff99,
+        inset 0 2px 0 #ccff99,
+        0 1px 3px #777,
+        0 0px 1px #ccc;}
+
+.position2 .button1 {
+    width: 85px;
+    margin-right: 10px;
+}
+.cf:before, .cf:after{
+    content:"";
+    display:table;
+}
+ 
+.cf:after{
+    clear:both;
+}
+ 
+.cf{
+    zoom:1;
+}  
+
+/* Form wrapper styling */
+.form-wrapper {
+    width: 370px; /* 450 px */
+    padding: 15px;
+    margin: 128px auto 10px auto;
+    background: #444;
+    background: rgba(0,0,0,.2);
+    border-radius: 10px;
+    box-shadow: 0 1px 1px rgba(0,0,0,.4) inset, 0 1px 0 rgba(255,255,255,.2);
+}
+ 
+/* Form text input */
+ 
+.form-wrapper input {
+    width: 250px; /* 330 px*/
+    height: 20px;
+    padding: 10px 5px;
+    float: left;
+    font: bold 15px 'lucida sans', 'trebuchet MS', 'Tahoma';
+    border: 0;
+    background: #eee;
+    border-radius: 3px 0 0 3px;
+}
+ 
+.form-wrapper input:focus {
+    outline: 0;
+    background: #fff;
+    box-shadow: 0 0 2px rgba(0,0,0,.8) inset;
+}
+ 
+.form-wrapper input::-webkit-input-placeholder {
+   color: #999;
+   font-weight: normal;
+   font-style: italic;
+}
+ 
+.form-wrapper input:-moz-placeholder {
+    color: #999;
+    font-weight: normal;
+    font-style: italic;
+}
+ 
+.form-wrapper input:-ms-input-placeholder {
+    color: #999;
+    font-weight: normal;
+    font-style: italic;
+}
+ 
+/* Form submit button */
+.form-wrapper button {
+    overflow: visible;
+    position: relative;
+    float: right;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    height: 40px;
+    width: 110px;
+    font: bold 15px/40px 'lucida sans', 'trebuchet MS', 'Tahoma';
+    color: #fff;
+    text-transform: uppercase;
+    background: #d83c3c;
+    border-radius: 0 3px 3px 0;
+    text-shadow: 0 -1px 0 rgba(0, 0 ,0, .3);
+}
+   
+.form-wrapper button:hover{
+    background: #e54040;
+}
+   
+.form-wrapper button:active,
+.form-wrapper button:focus{
+    background: #c42f2f;
+    outline: 0;
+}
+ 
+.form-wrapper button:before { /* left arrow */
+    content: '';
+    position: absolute;
+    border-width: 8px 8px 8px 0;
+    border-style: solid solid solid none;
+    border-color: transparent #d83c3c transparent;
+    top: 12px;
+    left: -6px;
+}
+ 
+.form-wrapper button:hover:before{
+    border-right-color: #e54040;
+}
+ 
+.form-wrapper button:focus:before,
+.form-wrapper button:active:before{
+        border-right-color: #c42f2f;
+}
+ 
+.form-wrapper button::-moz-focus-inner { /* remove extra button spacing for Mozilla Firefox */
+    border: 0;
+    padding: 0;
+}   
+
+/*--------header search input end-----*/
+
+
+.add-def {
+    text-align: right;
+    margin-top: 3em;
+    margin-right: 0.5em;
+}
+
+.add-def a {
+    text-align: center;
+}
+
+#add-def {
+    font-size: 12px;
+}
+
+#no-need {
+    font-size: 1.5em;
+    margin-bottom: 0.5em;
+}
+
+.result {
+    margin-top: 15px;
+}
+.result h3 a {
+    color: #454545;
+    font-size: 1.2em;
+    text-decoration: none;
+}
+
+.result h3 a:hover {
+    text-decoration: underline;
+}
+
+.result-jump {
+    text-align: right;
+}
+
+.result-jump a {
+    text-decoration: none;
+    color: #696969;
+}
+
+.result p {
+    line-height: 1.5em;
+}
+
+/*-------right column--------*/
+
+.colright {
+    border-left: 1px solid #5ae31d;
+}
+.colright .righttitle {
+    font-size: 12px;
+    margin-top: 15px;
+    margin-bottom: 4px;
+}
+.colright ul li {
+    list-style: none;
+    margin-top: 2px;
+}
+.colright ul li a {
+    display: block;
+    width: 150px;
+    text-decoration: none;
+    font-size: 12px;
+    color: lightgray;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.colright ul li a:hover {
+    color: darkslategray;
+}
+/*-------right column end--------*/
+
+
+.homepage .form-wrapper {
+    margin-top:0.5em;
+}
+
+
+/*-------footer------*/
+.footer {
+    width: 100%;
+    background-color: #4ac9f4;
+    height: 220px;
+    padding-top: 35px;
+    margin-top: 180px;
+}
+
+.footer-block {
+    margin: 0 auto;
+    height: 120px;
+    max-width: 80%;
+}
+
+.f-b-01, .f-b-02, .f-b-03 {
+    max-width: 300px;
+    display: inline-block;
+    margin-right: 20px;
+    line-height: 2em;
+}
+
+
+/*-------footer end------*/
+
+
+.bullshit a {
+    text-decoration: none;
+    color: #29a3cc;
+    text-align: center;
+    position: fixed;
+    bottom: 5px;
+    width: 100%;
+    font-size: 8px;
+}

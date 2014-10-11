@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{% block title %}base page !{% endblock %}</title>
+<meta name="description" content="{% block description %}A best liyu dictionary !{% endblock %}" />
+<meta name="keywords" content="{% block keyword %}term definitions{% endblock %}" />
+<meta name="robots" content="{% block robots %}index, follow{% endblock %}" />
+<link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+{% block js %}{% endblock %}
+</head>
+<body>
+{% block header %}
+<div class="header"></div>
+{% endblock %}
+
+<div class="content-wrap">
+  <div class="content">
+  	<div class="main-wrap">
+   	  <div class="main">
+   	    <div class="colcenter">
+         {% block colcenter %}{% endblock %}
+        </div>
+   	  </div>
+      <div class="colleft">
+        {% block colleft %}{% endblock %}
+      </div>
+      <div class="colright">
+        {% block colright %}{% endblock %}
+      </div>
+    </div>
+  </div>
+<div class="push"></div>
+</div>
+
+
+<div class="clear"></div>
+
+{% block footer %}
+  <div class="footer"></div>
+{#<div style="visibility:hidden"><script src="http://js.users.51.la/17101801.js"></script>#}
+{#<noscript><a href="http://www.51.la/?17101801" target="_blank"><img src="http://img.users.51.la/17101801.asp" style="border:none" /></a></noscript></div>#}
+{% endblock %}
+</body>
+</html>

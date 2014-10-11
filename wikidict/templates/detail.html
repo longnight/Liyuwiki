@@ -1,0 +1,191 @@
+{% extends "base.html" %}
+{% load static %}
+{% load cache %}
+{% block description %}{{ term.term }}:{{ deflist|first|linebreaks|removetags:"p br" }}{% endblock %}
+{% block title %}{{ term.term }}是什么意思?&nbsp;&nbsp;-俚语维基,人人都可以匿名发表的流行语词典{% endblock %}
+{% block keyword %}{{ term.term }}{% endblock %}
+{% block js %}
+    <script src="{% static 'js/liyuwiki.js' %}"></script>
+{% endblock %}
+
+{% block header %}
+<div class="header">
+<div class="header-main">
+    <div class="positionlogo">
+        <a class="logo"  href="/"><img src="{% static 'images/liyuwiki-logo.png' %}" alt="LOGO"/></a>
+    </div>
+  <div class="position1">
+    <form method="get" action="/search" class="form-wrapper cf">
+      {% block searchform %}{{ sform.q }}{% endblock %}
+      <button type="submit"> 搜 索 </button>
+    </form> 
+  </div>
+  
+  <div class="position2" >
+    <a href="/random/" class="button1 green">随&nbsp;便&nbsp;看&nbsp;看</a>
+      <a href="/add_term.html" class="button1 blue">创&nbsp;建&nbsp;词&nbsp;条</a>
+  </div>
+
+</div>
+</div>
+{% endblock %}
+
+
+
+{% block colcenter %}
+<h1>{{ term.term }}</h1>
+
+{% if deflist %}
+{% for definition in deflist %}
+
+<p class="def-block">
+    {{ definition.definition|linebreaks }}<br />
+    {% if definition.docfile %}
+    <a title="查看原始图片: {{ term.term }}，{{ definition.created_time|date:"Y-m-d" }}" href="{{ definition.docfile.url }}" ><img alt="{{ term.term }}" class="docfile" src="{{ definition.docfile.url }}" /></a>
+    <br />
+    <a class="img_tips" href="{{ definition.docfile.url }}" target="_blank">点此在新窗口查看原始图片</a>
+    {% endif %}
+</p>
+
+<p class="date-author">
+<span class="author">
+    {% if definition.homepage %}
+    <a target="_blank" href="{{ definition.homepage }}" >{{ definition.author|default:"匿名"}}</a>
+    {% else %}
+    {{ definition.author|default:"匿名"}}
+    {% endif %}创建<br />
+</span>
+<span class="date">{{ definition.created_time|date:"Y-m-d,H:i:s" }}</span>
+</p>
+
+<p class="score">
+得分:{{ definition.vote_rank2 }}
+</p>
+<p class="vote">
+<a class="up" href="/{{ term.uid }}/{{ definition.uid }}.html?vote=add"><button>赞成</button></a><span class="up_num">({{ definition.total_upvotes }})</span>
+<a class="down" href="/{{ term.uid }}/{{ definition.uid }}.html?vote=sub"><button>反对</button></a><span class="down_num">({{ definition.total_downvotes }})</span>
+<a class="the-link" href="/{{ term.uid }}/{{ definition.uid }}.html">引用本条释义</a>
+</p>
+<hr class="def-hr" />
+{% endfor %}
+
+{% else %}
+<p class="def-block unshow">该条目的释义尚未通过，你可以提交新的释义</p>
+{% endif %}
+
+
+<div class="add-def">
+    <span id="add-def">对以上内容不满意?你可以</span>
+    <a class="button2 blue" href="/{{ term.uid }}_add_def.html">添加一个释义</a>
+</div>
+
+{% if related_terms %}
+<div class="r_t">
+    <p>相关的词条:<br />
+    {% for i in related_terms %}
+        <a href="/{{ i.uid }}.html">{{ i.term }}</a>,&nbsp;&nbsp;
+    {% endfor %}
+    </p>
+</div>
+{% endif %}
+
+
+{% if v_t %}
+<div class="v_t">
+    <p>为【{{ term.term }}】投票的人,也为这些词条投过票:<br />
+    {% for i in v_t %}
+    <a href="/{{ i.uid }}.html">{{ i.term }}</a>,&nbsp;&nbsp;
+    {% endfor %}
+    </p>
+</div>
+{% endif %}
+
+
+{% if recent_kw|slice:":8" %}
+<div class="recent_kw">
+    <p>大家最近搜的内容:<br />
+    {% for i in recent_kw|slice:":8" %}
+        <a class="recent_search" href="/add_search_term/{{ i }}/">{{ i|truncatechars:20 }}</a>,&nbsp;&nbsp;
+    {% endfor %}
+    {% if recent_kw|slice:"8:" %}
+    <div class="part_2">
+        {% for i in recent_kw|slice:"8:" %}
+            <a class="recent_search" href="/add_search_term/{{ i }}/">{{ i|truncatechars:20 }}</a>,&nbsp;&nbsp;
+        {% endfor %}
+    </div>
+    {% endif %}
+    </p>
+</div>
+{% endif %}
+
+{% endblock %}
+
+
+{% block colleft %}
+<ul id="termlist">
+{% for i in previouslist %}
+<li><a href="/{{ i.uid }}.html">{{ i.term }}</a></li>
+{% endfor %}
+<li id="active"><a href="/{{ term.uid }}.html" id="current">{{ term.term }}</a></li>
+{% for i in nextlist %}
+<li><a href="/{{ i.uid }}.html">{{ i.term }}</a></li>
+{% endfor %}
+</ul>
+{% endblock %}
+
+
+
+{% block colright %}
+<ul>
+<div class="righttitle">得分最高的释义:</div>
+<hr />
+{% for i in score_rank %}
+<li><a href="/{{ i.Terms.uid }}.html">{{ i.definition }}</a></li>
+{% endfor %}
+</ul>
+
+<ul>
+<div class="righttitle">最近被投票的词条:</div>
+<hr />
+{% for i in latest_vote %}
+<li><a href="/{{ i.uid }}.html">{{ i.term }}</a></li>
+{% endfor %}
+</ul>
+
+<ul>
+<div class="righttitle">访问量排行:</div>
+<hr />
+{% for i in visited_rank %}
+<li><a href="/{{ i.uid }}.html">{{ i.term }}</a></li>
+{% endfor %}
+</ul>
+
+{% endblock %}
+
+
+{% block footer %}
+<div class="footer">
+<div class="footer-block">
+    <div class="f-b-01"><a title="Go to homepage" class="logo" href="/"><img src="{% static 'images/liyuwiki-logo-small.png' %}" alt="LOGO"/></a></div>
+
+    <div class="f-b-02">
+        <a href="/about.html" >关于</a><br />
+        <a href="/support.html">采用的技术</a>
+    </div>
+
+    <div class="f-b-03">
+       <a href="/ugc_guide.html">投稿指南</a><br />
+        联系：
+    <SCRIPT TYPE="text/javascript">
+    <!--
+    emailE=('admin@' + 'liyuwiki.com')
+    document.write('<A href="mailto:' + emailE + '">' + emailE + '</a>')
+    //-->
+    </script>
+    </div>
+</div>
+</div>
+{% endblock %}
+
+
+

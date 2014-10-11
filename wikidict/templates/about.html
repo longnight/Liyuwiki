@@ -1,0 +1,61 @@
+{% extends "detail.html" %}
+{% load static %}
+{% block title %}关于本站{% endblock %}
+{% block description %}关于“俚语维基”的说明{% endblock %}
+{% block keyword %}about{% endblock %}
+{% block searchform %}<input type="text" placeholder="..." name="q" id="id_q">{% endblock %}
+
+
+
+
+{% block colcenter %}
+<div class="single">
+<h3>“俚语维基”的说明</h3>
+<p>很久以来我就有一个想法，我们在网上时常看到一些新生的语汇，<br />
+它们往往诞生得非常突然，又不被维基百科等网站收录，<br />
+猝然之间难以理解它们的意义，十分苦恼。<br />
+在英语世界，有一网站<a href="http://www.urbandictionary.com/" target="_blank">Urban Dictionary</a>，
+专门收录这类网络俚语词汇，<br />
+帮助用户理解这样的暗流或者说亚文化，我觉得很有用。<br />
+但是中文世界里好像还没有这种网站。<br />
+所以，我用开源的Web App框架Django，写了这个“俚语维基”，<br />
+平时一有遇见，若知道其意义，则记录于此。<br />
+即使不恰当，别人也有机会发表自己观点，算作抛砖引玉。<br />
+小而言，可以有所帮助，大而言，是对这个时代作些微不足道的记录。<br />
+</p>
+
+
+<p>这里也是开放的，完全不需要注册、登录，<br />
+所有访客都可以直接发表新的俚语词汇。<br />
+</p>
+
+<p>这个网站使用的开源技术，<a href="/support.html">请看这里</a><br />
+如果你想要提交新的俚语条目或释义，<a href="/ugc_guide.html">请先看这里</a>
+</p>
+
+<p><span style=" border-bottom:solid 15px lawngreen">简单点来说，这里就是一个可以随意创建词条、投票的网站。</span></p>
+<h3>粗鄙、不堪入目，和其他</h3>
+<p>本站所载词条，仅代表该词条作者本人的三观，不意味着管理员本人赞同或反对其观点。<br />
+
+</p>
+{% with '1 2' as alist %}
+    {% for i in alist.split|random %}
+        <br /><a href="http://movie.douban.com/subject/11500954/" target="_blank">
+        <img src="static/images/0{{ i }}.jpg" /></a>
+    {% endfor %}
+{% endwith %}
+
+</div>
+{% endblock %}
+
+
+
+
+
+{% block colleft %}
+    &nbsp;
+{% endblock %}
+
+{% block colright %}
+    &nbsp;
+{% endblock %}

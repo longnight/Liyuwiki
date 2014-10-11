@@ -1,0 +1,52 @@
+{% extends "detail.html" %}
+{% load static %}
+
+{% block title %}创建一个词条&nbsp;{% if desc %}:{{ desc }}{% endif %}&nbsp;-俚语维基{% endblock %}
+{% block description %}{% if desc %}{{ desc }},{% endif %}不需要注册,可以直接创建.{% endblock %}
+{% block keyword %}{% if desc %}{{ desc }},创建{% endif %}{% endblock %}
+{% block js %}
+    <script src="{% static 'js/jquery-1.11.1.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+{% endblock %}
+
+
+{% block colcenter %}
+    <form action="/add_term.html" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <p>创建一个词条 :<span id="id_term_tips" style="display: none">可再输入<span id="id_term_counter"></span>个字符。最少需输入1字。</span><br/>
+            {{ form.term }}{{ form.term.help_text }}{{ form.term.errors }}</p>
+        <br />
+        <p>添加释义 :
+            <span id="id_definition_tips" style="display: none">已有<span id="id_definition_counter2"></span>字，最少提交15字。可输入<span id="id_definition_counter"></span>个字符。</span><br/>
+            {{ form.definition }}{{ form.definition.help_text }}{{ form.definition.errors }}</p>
+        <br />
+        <p>请填写正确的计算结果 : <br/>
+            {{ form.captcha }}{{ form.captcha.errors }}</p>
+        <br />
+        <hr style="color: whitesmoke;width: 45%;text-align: left" />
+        <br />
+        <div id="no-need">以下是选填信息（不写也没问题）：</div><br />
+        <p>上传1个参考图片（大小<3MB，宽度<1000px，高度<3000px）：<br />
+            {{ form.docfile }}
+            {{ form.docfile.errors }}
+            <br /><br />
+            你的名字 :<span id="id_author_tips" style="display: none">可输入<span id="id_author_counter"></span>个字符</span><br/>
+            {{ form.author }}{{ form.author.help_text }}{{ form.author.errors }}<br/><br/>
+            你的博客或者参考网站 :
+            <span id="id_homepage_tips" style="display: none">可输入<span id="id_homepage_counter"></span>个字符，你留下的网址将永久性出现在词条旁边</span><br/>
+            {{ form.homepage }}{{ form.homepage.help_text }}{{ form.homepage.errors }}<br/><br/>
+            你的电子邮件 :
+            <span id="id_author_email_tips" style="display: none">可输入<span id="id_author_email_counter"></span>个字符，你将收到系统发来的通知邮件</span><br/>
+            {{ form.author_email }}{{ form.author_email.errors }}</p>
+        <br />
+        <input type="submit" value="提交">
+    </form>
+{% endblock %}
+
+{% block colleft %}
+    &nbsp;
+{% endblock %}
+
+{% block colright %}
+    &nbsp;
+{% endblock %}

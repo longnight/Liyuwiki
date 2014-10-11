@@ -1,0 +1,309 @@
+* {
+margin: 0;
+}
+
+html, body {
+height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    border: 0; /* This removes the border around the viewport in old versions of IE */
+    width: 100%;
+    min-width: 600px; /* Minimum width of layout - remove line if not required */
+    /* The min-width property does not work in old versions of Internet Explorer */
+    font-size: 90%;
+    background-color: ghostwhite;
+
+}
+
+.header {
+    width: 100%;
+    background-color: #4ac9f4;
+    height: 80px;
+    margin-bottom: 10px;
+    padding-top: 15px;
+}
+
+.header-main {
+    /*border: 1px solid indianred;*/
+    margin: auto;
+    max-width: 75%;
+}
+
+
+.content-wrap {
+    position: relative; /* This fixes the IE7 overflow hidden bug and stops the layout jumping out of place */
+    clear: both;
+    float: left;
+    width: 100%; /* width of whole page */
+    overflow: hidden; /* This chops off any overhanging divs */
+
+    min-height: 100%;
+height: auto !important;
+height: 100%;
+margin: 0 auto -220px;
+}
+
+
+.content {
+    float: left;
+    width: 200%;
+    margin-left: -200px; /* Width of right column */
+    position: relative;
+    right: 100%;
+}
+
+.main-wrap {
+    float: left;
+    width: 100%;
+    margin-left: -50%;
+    position: relative;
+    left: 400px; /* Left column width + right column width */
+}
+
+.main {
+    float: left;
+    width: 50%;
+    position: relative;
+    right: 200px; /* Width of left column */
+    padding-bottom: 1em; /* Centre column bottom padding. Leave it out if it's zero */
+}
+
+.colleft {
+    float: left;
+    float: right; /* This overrides the float:left above */
+    width: 170px; /* Width of left column content (left column width minus left and right padding) */
+    position: relative;
+    right: 5px; /* Width of the left-had side padding on the left column */
+    /*below is to limit word wide*/
+    /*width: 165px;*/
+/*    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;*/
+}
+
+.colright {
+    float: left;
+    float: right; /* This overrides the float:left above */
+    width: 170px; /* Width of right column content (right column width minus left and right padding) */
+    margin-right: 45px; /* Width of right column right-hand padding + left column left and right padding */
+    position: relative;
+    left: 50%;
+}
+
+.colcenter {
+    margin: 0 215px;
+    /* Centre column side padding:
+                       Left padding = left column width + centre column left padding width
+                       Right padding = right column width + centre column right padding width */
+    position: relative;
+    left: 200%;
+    overflow: hidden;
+}
+
+/*---------left column--------*/
+
+ ul#termlist
+ {
+ text-align: left;
+ list-style: none;
+ padding: 0;
+ margin: 0 auto;
+ width: 95%;
+
+ }
+
+ ul#termlist li
+ {
+ display: block;
+ margin: 0;
+ padding: 0;
+
+ }
+
+ ul#termlist li a
+ {
+ display: block;
+ width: 95%;
+ padding: 0.3em 0.2em 0.3em 1em;
+ border-width: 1px;
+ border-color: #ffe #aaab9c #ccc #fff;
+ border-style: solid;
+ color: #777;
+ text-decoration: none;
+ background: #f7f2ea;
+ margin-right: 8px;
+       white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+ }
+
+ ul#termlist li a { width: auto; }
+
+ ul#termlist li#active a
+ {
+ background: #f0e7d7;
+ color: #800000;
+ }
+
+ ul#termlist li a:hover, ul#termlist li#active a:hover
+ {
+ color: #800000;
+ background: transparent;
+ border-color: #aaab9c #fff #fff #ccc;
+ }
+
+/*---------left column end--------*/
+
+.push {
+    height: 220px;
+    clear: both;
+}
+
+.clear {
+    clear: both;
+}
+
+/*-------footer------*/
+.footer {
+    width: 100%;
+    background-color: #4ac9f4;
+    font-size: 10px;
+    height: 220px;
+    padding-top: 35px;
+    margin-top: 10px;
+}
+
+.footer-main {
+    border: 1px solid indianred;
+    margin: 0 auto;
+    height: 120px;
+    max-width: 75%;
+}
+/*-------footer end------*/
+
+
+
+/*--------header search input-----*/
+.cf:before, .cf:after{
+    content:"";
+    display:table;
+}
+
+.cf:after{
+    clear:both;
+}
+
+.cf{
+    zoom:1;
+}
+
+
+/* Form wrapper styling */
+.search-form {
+    width: 450px;
+    padding: 15px;
+    background: #444;
+    background: rgba(0,0,0,.2);
+    border-radius: 10px;
+    box-shadow: 0 1px 1px rgba(0,0,0,.4) inset, 0 1px 0 rgba(255,255,255,.2);
+}
+
+/* Form text input */
+
+.search-form input {
+    width: 330px;
+    height: 20px;
+    padding: 10px 5px;
+    float: left;
+    font: bold 14px;
+    border: 0;
+    background: #eee;
+    border-radius: 3px 0 0 3px;
+}
+
+.search-form input:focus {
+    outline: 0;
+    background: #fff;
+    box-shadow: 0 0 2px rgba(0,0,0,.8) inset;
+}
+
+.search-form input::-webkit-input-placeholder {
+   color: #999;
+   font-weight: normal;
+   font-style: italic;
+}
+
+.search-form input:-moz-placeholder {
+    color: #999;
+    font-weight: normal;
+    font-style: italic;
+}
+
+.search-form input:-ms-input-placeholder {
+    color: #999;
+    font-weight: normal;
+    font-style: italic;
+}
+
+/* Form submit button */
+.search-form button {
+    overflow: visible;
+    position: relative;
+    float: right;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    height: 40px;
+    width: 110px;
+    font: bold 15px/40px;
+    color: #fff;
+    text-transform: uppercase;
+    /*background: #d83c3c;*/
+    background: #e052a5;
+    border-radius: 0 3px 3px 0;
+    text-shadow: 0 -1px 0 rgba(0, 0 ,0, .3);
+}
+
+.search-form button:hover{
+    background: #e54040;
+}
+
+.search-form button:active,
+.search-form button:focus{
+    background: #c42f2f;
+    outline: 0;
+}
+
+.search-form button:before { /* left arrow */
+    content: '';
+    position: absolute;
+    border-width: 8px 8px 8px 0;
+    border-style: solid solid solid none;
+    border-color: transparent #e052a5 transparent;
+    top: 12px;
+    left: -6px;
+}
+
+.search-form button:hover:before{
+    border-right-color: #e54040;
+}
+
+.search-form button:focus:before,
+.search-form button:active:before{
+        border-right-color: #c42f2f;
+}
+
+.search-form button::-moz-focus-inner { /* remove extra button spacing for Mozilla Firefox */
+    border: 0;
+    padding: 0;
+}
+/*--------header search input end-----*/
+
+
+
+
+
+

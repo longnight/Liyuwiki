@@ -1,0 +1,6 @@
+{{ object.Terms.term }}
+{{ object.Terms.uid }}
+{{ object.definition }}
+{{ object.uid }}
+{{ object.author }}
+{{ object.homepage }}
