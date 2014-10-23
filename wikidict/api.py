@@ -74,7 +74,6 @@ def api_term(request, term_uid):
         def_dict['definition'] = i.definition
         def_dict['created_time'] = i.created_time.isoformat()
         def_dict['homepage'] = i.homepage
-        def_dict['author_email'] = i.author_email
         def_dict['score'] = i.vote_rank2
         def_dict['up_vote'] = i.total_upvotes
         def_dict['down_vote'] = i.total_downvotes
