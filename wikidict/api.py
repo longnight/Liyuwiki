@@ -77,7 +77,7 @@ def api_term(request, term_uid):
         def_dict['score'] = i.vote_rank2
         def_dict['up_vote'] = i.total_upvotes
         def_dict['down_vote'] = i.total_downvotes
-        def_dict['img_url'] ='http://liyuwiki.com/media/' + str(i.docfile)
+        def_dict['img_url'] = str(i.docfile)
 
         term_dict['definitions'].append(def_dict)
     return HttpResponse(json.dumps(term_dict, indent=4*' '),\
