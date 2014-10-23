@@ -1,0 +1,23 @@
+{% extends "about.html" %}
+{% load static %}
+{% block title %}API{% endblock %}
+
+{% block colcenter %}
+    <div class="single">
+    <h1>API</h1>
+    <p> 
+    <a href="http://liyuwiki.com/api/v1/">http://liyuwiki.com/api/v1/</a>:<br />
+    最近的10个新词条
+    </p>
+
+    <p>
+    <a href="http://liyuwiki.com/api/v1/term/388144/">http://liyuwiki.com/api/v1/term/[uid]/</a>:<br />
+    词条内容
+    </p>
+
+    <p>
+    目前均只能处理GET查询, 稍后将提供创建词条和释义的方法。
+    </p>
+    </div>
+
+{% endblock %}

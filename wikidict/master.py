@@ -7,7 +7,7 @@ from models import *
 from tasks import *
 from main.private_settings import backend_url
 
-@login_required
+@login_required()
 def master_index(request):
     rc = RequestContext(request)
     d = Definitions.objects.all()

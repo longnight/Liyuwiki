@@ -118,6 +118,8 @@ STATICFILES_DIRS = (
     STATIC_PATH,
 )
 
+LOGIN_URL = private_settings.login_url
+
 ADMINS = private_settings.admin_mail
 
 EMAIL_BACKEND = private_settings.EMAIL_BACKEND

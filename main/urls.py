@@ -1,11 +1,12 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from django.views.generic import TemplateView
-from wikidict import views
+from wikidict import views, api
 from wikidict.models import *
 from django.conf import settings
 from django.conf.urls.static import static
 from django.views.generic.base import RedirectView
+
 try:
     import private_settings2
 except:
@@ -35,6 +36,10 @@ urlpatterns = patterns('',
     url(r'^technologies.html$', RedirectView.as_view(url='/support.html', permanent=True), name='technologies'),
     url(r'^support.html$', TemplateView.as_view(template_name='support.html'), name='support'),
     url(r'^ugc_guide.html$', TemplateView.as_view(template_name='ugc_guide.html'), name='ugc_guide'),
+    url(r'^api.html$', TemplateView.as_view(template_name='api.html'), name='api_html'),
+    url(r'^api/$', api.api, name='api_'),
+    url(r'^api/v1/$', api.api, name='api'),
+    url(r'^api/v1/term/(?P<term_uid>\d{6})/$', api.api_term, name='api_term'),
     url(r'^$', views.index, name='index'),
 )
 
