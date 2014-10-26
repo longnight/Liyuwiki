@@ -4,8 +4,9 @@ import simplejson as json
 from django.http import HttpResponse
 from django.core.exceptions import ObjectDoesNotExist
 from datetime import datetime
+from django.views.decorators.csrf import csrf_exempt
 
-
+@csrf_exempt
 def api(request):
     if request.method == 'POST':
         return HttpResponse(json.dumps({"error":"sorry, post method not yet ready"}),\
@@ -15,6 +16,7 @@ def api(request):
     "collection" : {
     "href" : "http://liyuwiki.com/api/v1/",
     "terms" : [],
+    "total_terms":"",
     "add_term_template" : {
         "term" : "",
         "definition" : "",
@@ -25,7 +27,8 @@ def api(request):
         }
     }
 
-    t = Terms.objects.order_by('-id').filter(terms_definitions__show=True).distinct()    
+    t = Terms.objects.order_by('-id').filter(terms_definitions__show=True).distinct()
+    api_dict['total_terms'] = t.count()
     for i in t[:10]:
         term_dict = {}
         term_dict['term'] = i.term
@@ -34,7 +37,12 @@ def api(request):
     return HttpResponse(json.dumps(api_dict, indent=4*' '),\
      content_type="application/json", status=200)
 
+
+@csrf_exempt
 def api_term(request, term_uid):
+    if request.method == 'POST':
+        return HttpResponse(json.dumps({"error":"oops, post method not yet ready"}),\
+         content_type="application/json", status=404)
     term_dict = {
     "term" : "",
     "href" : "",
@@ -63,7 +71,7 @@ def api_term(request, term_uid):
     term_dict['href'] = 'http://liyuwiki.com/api/v1/term/' + term_uid
     term_dict['term_pinyin'] = term.term_pinyin
     term_dict['created_time'] = term.created_time.isoformat()
-    term_dict['visit_times'] = term.visit_times    
+    term_dict['visit_times'] = term.visit_times
 
     definition = Definitions.objects.all().filter(show=True)
     deflist = definition.filter(Terms_id=term.id).order_by('-vote_rank2', 'created_time')
@@ -77,7 +85,8 @@ def api_term(request, term_uid):
         def_dict['score'] = i.vote_rank2
         def_dict['up_vote'] = i.total_upvotes
         def_dict['down_vote'] = i.total_downvotes
-        def_dict['img_url'] = str(i.docfile)
+        if i.docfile:
+            def_dict['img_url'] = 'http://liyuwiki.com/media/' + str(i.docfile)
 
         term_dict['definitions'].append(def_dict)
     return HttpResponse(json.dumps(term_dict, indent=4*' '),\

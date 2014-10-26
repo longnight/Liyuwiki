@@ -6,6 +6,10 @@ from django.shortcuts import render_to_response
 from models import *
 from tasks import *
 from main.private_settings import backend_url
+from main.settings import DEBUG
+
+is_online = not DEBUG
+
 
 @login_required()
 def master_index(request):
@@ -28,7 +32,7 @@ def master_pass_d(request, d_uid):
     d = Definitions.objects.all().get(uid=d_uid)
     d.show = True
     d.save()
-    update_db.delay()
+    # update_db.delay()
     return HttpResponseRedirect(backend_url)
 
 @login_required
@@ -36,7 +40,8 @@ def master_pass_d_send(request, d_uid):
     d = Definitions.objects.all().get(uid=d_uid)
     d.show = True
     d.save()
-    user_pass.delay(d_uid, d.author_email, d.Terms.term, d.definition)
+    if is_online:
+        user_pass.delay(d_uid, d.author_email, d.Terms.term, d.definition)
     update_db.delay()
     return HttpResponseRedirect(backend_url)
 
@@ -45,14 +50,15 @@ def master_del_d(request, d_uid):
     d = Definitions.objects.all()
     bad_d = d.get(uid=d_uid)
     bad_d.delete()
-    # update_db.delay()
+    update_db.delay()
     return HttpResponseRedirect(backend_url)
 
 @login_required
 def master_del_d_send(request, d_uid):
     d = Definitions.objects.all()
     bad_d = d.get(uid=d_uid)
-    user_del.delay(d_uid, bad_d.author_email, bad_d.Terms.term, bad_d.definition)
+    if is_online:
+        user_del.delay(d_uid, bad_d.author_email, bad_d.Terms.term, bad_d.definition)
     bad_d.delete()
     # update_db.delay()
     return HttpResponseRedirect(backend_url)

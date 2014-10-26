@@ -147,7 +147,7 @@ def add_term(request):
         if form.is_valid():
             raw_term = form.cleaned_data['term']
             raw_term = ' '.join(raw_term.split())
-            raw_term_pinyin = term_pinyin(unicode(raw_term))
+            raw_term_pinyin = term_pinyin(raw_term)
             clean_term_pinyin = ' '.join(raw_term_pinyin.split())
             t = Terms(
                 term=raw_term,
@@ -161,7 +161,6 @@ def add_term(request):
             d = Definitions(
                 Terms_id=t.id,
                 definition=form.cleaned_data['definition'],
-                # definition=definition_compact,
                 homepage=form.cleaned_data['homepage'],
                 author_email=form.cleaned_data['author_email'],
                 author=form.cleaned_data['author'],
@@ -169,7 +168,8 @@ def add_term(request):
                 docfile=form.cleaned_data['docfile']
             )
             d.save()
-            send_t.delay(t.term, d.definition, d.author, d.homepage, d.author_email)
+            if is_online:
+                send_t.delay(t.term, d.definition, d.author, d.homepage, d.author_email)
             return HttpResponseRedirect('/thanks.html')
     else:
         form = TermForm()
@@ -187,7 +187,7 @@ def add_search_term(request, search_term):
         if form.is_valid():
             raw_term = form.cleaned_data['term']
             raw_term = ' '.join(raw_term.split())
-            raw_term_pinyin = term_pinyin(unicode(raw_term))
+            raw_term_pinyin = term_pinyin(raw_term)
             clean_term_pinyin = ' '.join(raw_term_pinyin.split())
             t = Terms(
                 term=raw_term,
@@ -200,7 +200,6 @@ def add_search_term(request, search_term):
                 return HttpResponse(u'词条已经存在!')
             d = Definitions(
                 Terms_id=t.id,
-                # definition=form.cleaned_data['definition'],
                 definition=definition_compact,
                 homepage=form.cleaned_data['homepage'],
                 author_email=form.cleaned_data['author_email'],
@@ -209,7 +208,8 @@ def add_search_term(request, search_term):
                 docfile=form.cleaned_data['docfile']
             )
             d.save()
-            send_t.delay(t.term, d.definition, d.author, d.homepage, d.author_email)
+            if is_online:
+                send_t.delay(t.term, d.definition, d.author, d.homepage, d.author_email)
             return HttpResponseRedirect('/thanks.html')
     else:
         form = TermForm(initial={'term': search_term})
@@ -240,7 +240,8 @@ def add_def(request, term_uid):
                 docfile=form.cleaned_data['docfile']
             )
             d.save()
-            send_d.delay(t.term, d.definition, d.author, d.homepage, d.author_email)
+            if is_online:
+                send_d.delay(t.term, d.definition, d.author, d.homepage, d.author_email)
             return HttpResponseRedirect('/thanks.html')
     else:
         form = DefinitionForm()

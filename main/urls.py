@@ -39,7 +39,7 @@ urlpatterns = patterns('',
     url(r'^api.html$', TemplateView.as_view(template_name='api.html'), name='api_html'),
     url(r'^api/$', api.api, name='api_'),
     url(r'^api/v1/$', api.api, name='api'),
-    url(r'^api/v1/term/(?P<term_uid>\d{6})/$', api.api_term, name='api_term'),
+    url(r'^api/v1/term/(?P<term_uid>\d{6})$', api.api_term, name='api_term'),
     url(r'^$', views.index, name='index'),
 )
 
