@@ -20,7 +20,7 @@ from django import forms
 from collections import deque
 from django.core.cache import get_cache
 from main.settings import DEBUG
-
+from django.utils.encoding import force_str
 is_online = not DEBUG
 
 
@@ -42,12 +42,14 @@ def index(request):
 
 
 def detail(request, term_uid):
+
     rc = RequestContext(request)
     t = Terms.objects.all().filter(terms_definitions__show=True).distinct()
     try:
         term = t.get(uid=term_uid)
     except ObjectDoesNotExist:
         return HttpResponseRedirect('/404.html')
+
     definition = Definitions.objects.all().filter(show=True)
     deflist = definition.filter(Terms_id=term.id).order_by('-vote_rank2', 'created_time')
 
@@ -293,5 +295,5 @@ def randomview(request):
     # t = t.order_by('term_pinyin')[:len(t)-15] # uncomment this line can keep the lef side list from too short.
     t_uid_list = [i.uid for i in t]
     t_uid = random.choice(t_uid_list)
-    return HttpResponseRedirect('/%s.html' % t_uid)
+    return HttpResponseRedirect('/%s.html?from=random' % t_uid)
 

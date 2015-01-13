@@ -5,6 +5,8 @@ from django.http import HttpResponse
 from django.core.exceptions import ObjectDoesNotExist
 from datetime import datetime
 from django.views.decorators.csrf import csrf_exempt
+from django.utils.encoding import force_str
+
 
 @csrf_exempt
 def api(request):
@@ -66,7 +68,11 @@ def api_term(request, term_uid):
         return HttpResponse(json.dumps({"error":"no this term"}),\
          content_type="application/json", status=404)
 
+    # term_dict['term'] = force_str(term.term, encoding='utf-8', strings_only=False, errors='strict')
+    # term_dict['term'] = term.term.encode('utf-8')
+    # term_dict['term'] = term.term.encode('UTF8')
     term_dict['term'] = term.term
+    print type(term_dict['term'])
     term_dict['uid'] = term_uid
     term_dict['href'] = 'http://liyuwiki.com/api/v1/term/' + term_uid
     term_dict['term_pinyin'] = term.term_pinyin
