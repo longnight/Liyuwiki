@@ -39,7 +39,7 @@ class TermForm(forms.Form):
     author_email = forms.EmailField(required=False)
     docfile = forms.ImageField(required=False)
     captcha = MathCaptchaField(widget=MathCaptchaWidget(question_tmpl="%(num1)i %(operator)s %(num2)i = "))
-    
+
     def __init__(self, *args, **kwargs):
         super(TermForm, self).__init__(*args, **kwargs)
         self.fields['term'].validators.append(check_exist)

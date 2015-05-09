@@ -1,7 +1,7 @@
-#coding=utf-8
+# coding=utf-8
 from collections import Counter
-from models import *
-from secretballot.models import *
+from models import Terms, Definitions
+from secretballot.models import Vote
 import operator
 
 
@@ -31,7 +31,8 @@ def voted_term(term_id):
         except:
             pass
     terms_dict = dict(Counter(terms_list))
-    term_tuple_list_sorted = sorted(terms_dict.iteritems(), key=operator.itemgetter(1), reverse=True)
+    term_tuple_list_sorted = sorted(
+        terms_dict.iteritems(), key=operator.itemgetter(1), reverse=True)
     tuple_list = term_tuple_list_sorted[:5]
     obj_list = [i[0] for i in tuple_list]
     return obj_list

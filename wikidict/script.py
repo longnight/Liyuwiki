@@ -1,4 +1,4 @@
-#coding=utf-8
+# coding=utf-8
 import random
 import re
 from models import Terms, Definitions
@@ -17,6 +17,7 @@ def term_uid2():
         uid = ''
     return uid
 '''
+
 
 def term_uid():
     uid_list = [int(i.uid) for i in Terms.objects.all()]
@@ -44,12 +45,14 @@ def confidence(ups, downs):
         return 0
     z = 1.96  # 1.44 = 85%, 1.96 = 95%
     phat = float(ups) / n
-    return ( ( phat + z * z/(2*n) - z * sqrt((phat*(1-phat)+z*z/(4*n))/n))/(1+z*z/n))
+    return ((
+        phat + z * z/(2*n) - z * sqrt((phat*(1-phat)+z*z/(4*n))/n))/(1+z*z/n))
 
 
 def digi_to_py(word):
-    digidict = {'1': u'yi', '2': u'er', '3': u'san', '4': u'si', '5': u'wu', '6': u'liu', \
-                '7': u'qi', '8': u'ba', '9': u'jiu', '0': u'ling'}
+    digidict = {
+        '1': u'yi', '2': u'er', '3': u'san', '4': u'si', '5': u'wu',
+        '6': u'liu', '7': u'qi', '8': u'ba', '9': u'jiu', '0': u'ling'}
     patten = '([0-9]{1})'
     for i in word:
         if re.search(patten, i):

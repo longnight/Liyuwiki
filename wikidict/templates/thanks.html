@@ -3,10 +3,19 @@
 {% block title %}感谢您的支持{% endblock %}
 
 {% block colcenter %}
-    <h1>感谢您的支持！</h1>
-    <p>非常感谢您的贡献，网站管理员将会尽快处理！
-    <br /><br />
-    如果您留下了邮箱，将收到系统发来的结果通知。
+    <h1>发表成功！</h1>
+    {% if new_add_term_uid %}
+    <h3>足下刚刚提交的词条是:</h3>
+    <br />
+    <p>
+        <a href="/{{new_add_term_uid}}.html">{{ new_add_term }}</a><br />
+    </p>
+    {% endif %}
+    <br />
+    <p>
+    该词条和释义已经加入本站。<span style="color: lightgray">（但是目前只有您本人才能看到它。我要确认这是一条认真撰写的词条而不是技术爱好者们跑来开的玩笑XD）</span><br /><br />
+    如果留下了邮箱，您将收到系统发出的邮件通知<br /><br />
+    —— —— Liyuwiki.com, {% now " Y年 m月 d日, H:i" %}
     </p>
 
 {% endblock %}

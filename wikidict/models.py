@@ -1,6 +1,7 @@
 from django.db import models
 import secretballot
-import time, datetime
+import time
+import datetime
 import os
 
 
@@ -35,11 +36,10 @@ class Definitions(models.Model):
     uid = models.PositiveIntegerField(blank=True, unique=True)
     created_time = models.DateTimeField(auto_now_add=True)
     modified_time = models.DateTimeField(auto_now=True)
-    docfile = models.ImageField(upload_to=content_file_name, blank=True, null=True)
+    docfile = models.ImageField(
+        upload_to=content_file_name, blank=True, null=True)
 
     def __unicode__(self):
         return self.definition
 
 secretballot.enable_voting_on(Definitions)
-
-

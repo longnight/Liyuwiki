@@ -5,6 +5,8 @@
 {% block title %}{{ term.term }}是什么意思?&nbsp;&nbsp;-俚语维基,人人都可以匿名发表的流行语词典{% endblock %}
 {% block keyword %}{{ term.term }}{% endblock %}
 {% block js %}
+    <script src="{% static 'js/jquery-1.11.1.min.js' %}"></script>
+    <script src="{% static 'js/require.js' %}"></script>
     <script src="{% static 'js/liyuwiki.js' %}"></script>
 {% endblock %}
 
@@ -18,9 +20,9 @@
     <form method="get" action="/search" class="form-wrapper cf">
       {% block searchform %}{{ sform.q }}{% endblock %}
       <button type="submit"> 搜 索 </button>
-    </form> 
+    </form>
   </div>
-  
+
   <div class="position2" >
     <a href="/random/" class="button1 green">随&nbsp;便&nbsp;看&nbsp;看</a>
       <a href="/add_term.html" class="button1 blue">创&nbsp;建&nbsp;词&nbsp;条</a>
@@ -41,7 +43,8 @@
 <p class="def-block">
     {{ definition.definition|linebreaks }}<br />
     {% if definition.docfile %}
-    <a title="查看原始图片: {{ term.term }}，{{ definition.created_time|date:"Y-m-d" }}" href="{{ definition.docfile.url }}" ><img alt="{{ term.term }}" class="docfile" src="{{ definition.docfile.url }}" /></a>
+    <a title="查看原始图片: {{ term.term }}，{{ definition.created_time|date:"Y-m-d" }}" href="{{ definition.docfile.url }}" >
+    <img alt="{{ term.term }}" id="{{ definition.uid }}" class="docfile" src="{{ definition.docfile.url }}" /></a>
     <br />
     <a class="img_tips" href="{{ definition.docfile.url }}" target="_blank">点此在新窗口查看原始图片</a>
     {% endif %}
@@ -176,7 +179,8 @@
 
     <div class="f-b-03">
 
-       <a href="/ugc_guide.html">投稿指南</a><br />
+       <a href="/ugc_guide.html">创建指南</a><br />
+       <a href="https://github.com/longnight/Liyuwiki">源码在Github</a><br />
         联系：
     <SCRIPT TYPE="text/javascript">
     <!--
@@ -184,7 +188,6 @@
     document.write('<A href="mailto:' + emailE + '">' + emailE + '</a>')
     //-->
     </script><br />
-    <a>&nbsp;</a>
     </div>
 </div>
 </div>

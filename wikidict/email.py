@@ -1,8 +1,8 @@
-#coding=utf-8
+# coding=utf-8
 import datetime
 
 
-from django.core.mail import send_mail, send_mass_mail
+from django.core.mail import send_mass_mail
 
 
 def d_pass(d_uid, d_author_email, content1, content2):
@@ -80,7 +80,3 @@ def d_msg(t, d, name, hp, mail):
     msg3 = u"他的网址: \n" + hp + u"\n" * 2
     msg4 = u"他的邮箱: \n" + mail + u"\n" * 2
     return msg_head + msg1 + msg2 + msg3 + msg4 + msg_end
-
-
-
-
